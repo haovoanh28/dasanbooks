@@ -2,16 +2,14 @@ import { useState, useEffect, Fragment, memo } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 
 import {
-  Box,
   List,
   ListItem,
   ListItemButton,
   ListItemIcon,
   ListItemText,
   Collapse,
-  Link,
 } from "@mui/material";
-import { List as ListIcon, ExpandLess, ExpandMore } from "@mui/icons-material";
+import { ExpandLess, ExpandMore } from "@mui/icons-material";
 
 import NAV_ROUTES from "./nav-routes";
 
@@ -36,8 +34,6 @@ const NavLinks = () => {
     if (!isExpand) return null;
     return expandMap[index] ? <ExpandLess /> : <ExpandMore />;
   };
-
-  console.log("location ==> ", location.pathname);
 
   return (
     <>

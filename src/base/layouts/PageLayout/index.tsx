@@ -1,5 +1,5 @@
 import { memo } from "react";
-import { Box, Typography } from "@mui/material";
+import { Box } from "@mui/material";
 import SideNav from "./SideNav";
 import { Outlet } from "react-router-dom";
 import { DRAWER_WIDTH } from "base/constant/ui";

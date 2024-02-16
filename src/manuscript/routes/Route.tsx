@@ -10,6 +10,9 @@ const MainContainer = LazyLoader(
 );
 const ListPage = LazyLoader(lazy(() => import("manuscript/pages/ListPage")));
 const ViewPage = LazyLoader(lazy(() => import("manuscript/pages/ViewPage")));
+const PersonalPage = LazyLoader(
+  lazy(() => import("manuscript/pages/PersonalPage"))
+);
 
 const routes: RouteObject = {
   path: MANUSCRIPT_URL,
@@ -22,6 +25,10 @@ const routes: RouteObject = {
     {
       path: "all",
       element: <ListPage />,
+    },
+    {
+      path: "my",
+      element: <PersonalPage />,
     },
     {
       path: "view/:id",

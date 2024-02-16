@@ -1,10 +1,11 @@
-import PageLayout from "base/layouts/PageLayout";
+import { Box } from "@mui/material";
+import { Outlet } from "react-router-dom";
 
 const MainContainer = () => {
   return (
-    <div>
-      <PageLayout />
-    </div>
+    <Box className="manuscript-container">
+      <Outlet />
+    </Box>
   );
 };
 
