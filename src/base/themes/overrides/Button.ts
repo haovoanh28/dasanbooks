@@ -3,8 +3,8 @@ import { alpha, Theme } from '@mui/material/styles';
 
 // project import
 import { ButtonVariantProps, ExtendedStyleProps } from 'types/theme/extended';
-import getColors from '@base/utils/getColors';
-import getShadow from '@base/utils/getShadow';
+import getColors from 'base/utils/getColors';
+import getShadow from 'base/utils/getShadow';
 
 // types
 

@@ -4,8 +4,8 @@ import { Theme } from '@mui/material/styles';
 import { ColorProps } from 'types/theme/extended';
 
 // project import
-import getColors from '@base/utils/getColors';
-import getShadow from '@base/utils/getShadow';
+import getColors from 'base/utils/getColors';
+import getShadow from 'base/utils/getShadow';
 
 // types
 interface Props {

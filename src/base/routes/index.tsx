@@ -2,9 +2,13 @@ import { useRoutes } from "react-router-dom";
 import MainLayout from "base/layouts/MainLayout";
 import { Navigate } from "react-router-dom";
 
-const defaultPath = "/";
+const defaultPath = "/dashboard";
 const moduleRoutes: any = [];
-const requireAppRoutes = require.context("/src", true, /^\.\/.*(?<!Public)Route.tsx$/);
+const requireAppRoutes = require.context(
+  "/src",
+  true,
+  /^\.\/.*(?<!Public)Route.tsx$/
+);
 
 console.log("???");
 console.log("requireAppRoutes ==> ", requireAppRoutes.keys());
@@ -27,11 +31,12 @@ const mainRoutes = {
   path: "/",
   children: [
     {
-      path: "/",
-      element: <MainLayout />,
-      children: moduleRoutes
+      index: true,
+      element: <Navigate to="/dashboard" replace />,
     },
+    ...moduleRoutes,
   ],
+  // children: moduleRoutes,
 };
 
 export default function AppRoutes() {

@@ -17,11 +17,11 @@
     "jsx": "react-jsx",
     "types": ["node", "webpack-env"],
     "baseUrl": "src",
-    "paths": {
-      "@base/*": ["./base/*"],
-      "@manuscript/*": ["./manuscript/*"],
-      "@submission/*": ["./submission/*"]
-    }
+    // "paths": {
+    //   "@base/*": ["./base/*"],
+    //   "@manuscript/*": ["./manuscript/*"],
+    //   "@submission/*": ["./submission/*"]
+    // }
   },
   "include": ["src", "config-overrides.js"],
 }

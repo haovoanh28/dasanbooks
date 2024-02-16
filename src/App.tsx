@@ -1,13 +1,11 @@
-import "./App.css";
-
+import ThemeCustomization from "base/themes";
 import AppRoutes from "base/routes";
 
 function App() {
   return (
-    <div className="App">
+    <ThemeCustomization>
       <AppRoutes />
-      <h1>app</h1>
-    </div>
+    </ThemeCustomization>
   );
 }
 

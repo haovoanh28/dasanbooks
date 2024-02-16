@@ -6,7 +6,7 @@ import { Theme } from '@mui/material/styles';
 
 // project import
 import { ExtendedStyleProps } from 'types/theme/extended';
-import getColors from '@base/utils/getColors';
+import getColors from 'base/utils/getColors';
 
 // ==============================|| RADIO - COLORS ||============================== //
 

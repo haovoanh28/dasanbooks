@@ -1,11 +1,12 @@
 import { Outlet } from "react-router-dom";
+import { Box, Typography } from "@mui/material";
 
 const MainLayout = () => {
   return (
-    <div>
-      <h1>Main LAyout</h1>
+    <Box>
+      <Typography variant="h4">Main Layout</Typography>
       <Outlet />
-    </div>
+    </Box>
   );
 };
 
