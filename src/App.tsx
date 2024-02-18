@@ -1,12 +1,16 @@
 import ThemeCustomization from "base/themes";
 import AppRoutes from "base/routes";
-import PageLayout from "base/layouts/PageLayout";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+
+const queryClient = new QueryClient();
 
 function App() {
   return (
-    <ThemeCustomization>
-      <AppRoutes />
-    </ThemeCustomization>
+    <QueryClientProvider client={queryClient}>
+      <ThemeCustomization>
+        <AppRoutes />
+      </ThemeCustomization>
+    </QueryClientProvider>
   );
 }
 
