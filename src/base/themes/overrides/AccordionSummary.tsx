@@ -16,7 +16,7 @@ export default function AccordionSummary(theme: Theme) {
       },
       styleOverrides: {
         root: {
-          backgroundColor: palette.secondary.lighter,
+          // backgroundColor: palette.secondary.lighter,
           flexDirection: 'row-reverse',
           minHeight: 46
         },
