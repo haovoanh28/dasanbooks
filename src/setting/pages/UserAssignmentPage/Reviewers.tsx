@@ -6,8 +6,9 @@ import BaseIconButton from "base/components/BaseIconButton";
 import OrgModal from "base/components/OrgModal";
 import Panel from "./Panel";
 
-import { Delete, Add } from "@mui/icons-material";
+import { DeleteOutline, Add } from "@mui/icons-material";
 import { IdName } from "types/common";
+import UserInfo from "./UserInfo";
 
 interface Props {
   data: IdName[] | undefined;
@@ -49,18 +50,30 @@ export default function Reviewers({ data, isLoading }: Props) {
         {!data && !isLoading && <Typography>No Data</Typography>}
         {data && (
           <Stack spacing={2}>
-            {data.map((user) => (
-              <UserInformation
-                key={user.id}
-                mainInfo={user.name}
-                // subInfo={`${user.dept} / ${user.position}`}
-                rightActions={
-                  <BaseIconButton color="error">
-                    <Delete fontSize="small" />
+            {data.map((user: any) => {
+              const groupName = user.dept || user.group_name || "";
+              const positionName = user.position_name || user.srank || "";
+
+              return (
+                <Stack
+                  key={user.id}
+                  direction={"row"}
+                  justifyContent={"space-between"}
+                >
+                  <UserInfo
+                    userCn={user.cn}
+                    userNo={user.no}
+                    primaryText={user.name || user.user_name || ""}
+                    secondaryText={`${groupName} ${
+                      groupName && positionName ? "/" : ""
+                    } ${positionName}`}
+                  />
+                  <BaseIconButton color="secondary">
+                    <DeleteOutline fontSize="small" />
                   </BaseIconButton>
-                }
-              />
-            ))}
+                </Stack>
+              );
+            })}
           </Stack>
         )}
       </Panel>

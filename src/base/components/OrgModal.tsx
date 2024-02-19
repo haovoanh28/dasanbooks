@@ -1,8 +1,9 @@
-import {Box, Stack} from "@mui/material";
+import { Box, Stack } from "@mui/material";
 import SearchBar from "./SearchBar";
 import BaseButton from "./BaseButton";
 import BaseModal from "./BaseModal";
 import BaseOrg from "./BaseOrg";
+import { orgDepartmentConfig } from "./BaseOrg/utils";
 
 interface Props {
   open: boolean;
@@ -29,9 +30,18 @@ export default function OrgModal({ open, onClose }: Props) {
       size="md"
       footer={Footer}
     >
-      <SearchBar sx={{ width: "100%" }} />
       <Box sx={{ mt: 1 }}>
-        <BaseOrg />
+        <BaseOrg
+          search
+          orgConfig={orgDepartmentConfig}
+          isCheckbox
+          onChangeSelectUser={(data) => {
+            console.log("user:", data);
+          }}
+          onChangeSelectDept={(data) => {
+            console.log("dept:", data);
+          }}
+        />
       </Box>
     </BaseModal>
   );

@@ -1,37 +1,43 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import { Box, Typography, Grid } from "@mui/material";
 import { IdName } from "types/common";
 import { MailTemplateListItem } from "types/mail-template/list";
 import { CategoryDetailData } from "types/category/view";
 import Fields from "./Fields";
 import Reviewers from "./Reviewers";
+import { useGetCategoryView } from "setting/hooks/useCategory";
 
 interface Props {
   list: IdName[];
 }
 
 const Body = ({ list }: Props) => {
-  const [selectedField, setSelectedField] = useState<string | number>();
+  const [selectedField, setSelectedField] = useState<string | number>("");
   const [currentFieldData, setCurrentFieldData] =
     useState<CategoryDetailData>();
-  const [isLoadingDetail, setIsLoadingDetail] = useState<boolean>(false);
 
   useEffect(() => {
     if (!selectedField && list) {
-      setSelectedField(list[0].id);
+      setSelectedField(list[0]?.id);
     }
   }, [list]);
 
-  useEffect(() => {
-    if (selectedField) {
-      setCurrentFieldData(undefined);
-      setIsLoadingDetail(true);
-      // getCategoryDetail(selectedField).then((res) => {
-      //   setCurrentFieldData(res.rows);
-      //   setIsLoadingDetail(false);
-      // });
-    }
+  const params = useMemo(() => {
+    return {
+      id: selectedField?.toString(),
+      reviewer: 1,
+    };
   }, [selectedField]);
+
+  const { data: reviewerList, isLoading } = useGetCategoryView(params, {
+    enabled: !!selectedField,
+  });
+
+  useEffect(() => {
+    if (reviewerList && reviewerList.rows) {
+      setCurrentFieldData(reviewerList.rows);
+    }
+  }, [reviewerList]);
 
   const onSelectField = (field: string | number) => {
     setSelectedField(field);
@@ -48,10 +54,7 @@ const Body = ({ list }: Props) => {
           />
         </Grid>
         <Grid item xs={6} sx={{ height: "100%" }}>
-          <Reviewers
-            data={currentFieldData?.reviewers}
-            isLoading={isLoadingDetail}
-          />
+          <Reviewers data={currentFieldData?.reviewers} isLoading={isLoading} />
         </Grid>
       </Grid>
     </Box>
