@@ -22,7 +22,7 @@ export default function Fields({
           <Grid key={field.id} item xs={6}>
             <BaseButton
               variant={selectedField === field.id ? "contained" : "outlined"}
-              sx={{ width: "100%" }}
+              sx={{ width: "100%", height: 44 }}
               onClick={() => onSelectField(field.id)}
             >
               {field.name}

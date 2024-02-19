@@ -12,4 +12,10 @@ declare module "@mui/material/styles" {
   interface ThemeOptions {
     customShadows?: CustomShadowProps;
   }
+  export interface TypeText {
+    primary: string;
+    secondary: string;
+    disabled: string;
+    dark: string;
+  }
 }

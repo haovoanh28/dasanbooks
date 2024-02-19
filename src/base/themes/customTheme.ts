@@ -43,6 +43,7 @@ const createCustomTheme = () => {
         primary: paletteColors?.text?.primary,
         secondary: paletteColors?.text?.secondary,
         disabled: paletteColors?.text?.disabled,
+        dark: paletteColors?.text?.dark,
       },
       action: {
         disabled: paletteColors.grey[300],
