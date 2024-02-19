@@ -1,9 +1,9 @@
 import { ElementType, Suspense } from "react";
-import { Box } from "@mui/material";
+import Loader from "./Loader";
 
 const LazyLoader = (Component: ElementType) => (props: any) => {
   return (
-    <Suspense fallback={<Box>Loading...</Box>}>
+    <Suspense fallback={<Loader type="page" />}>
       <Component {...props} />
     </Suspense>
   );

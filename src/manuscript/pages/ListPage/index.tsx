@@ -5,13 +5,10 @@ import Toolbar from "./Toolbar";
 import AllManuscriptsDataTable from "./DataTable";
 import NoData from "base/components/NoData";
 import { useGetManuscriptList } from "manuscript/hooks/useManuscriptList";
+import Loader from "base/components/Loader";
 
 const ListPage = () => {
   const { data, isLoading } = useGetManuscriptList();
-
-  // if (!data) {
-  //   return <Box>Loading ...</Box>;
-  // }
 
   console.log("data ==> ", data);
 
@@ -22,7 +19,7 @@ const ListPage = () => {
         <CardContent>
           <Toolbar />
           <Box sx={{ mt: 2 }}>
-            {!data?.rows && isLoading && <Typography>Loading ....</Typography>}
+            {!data?.rows && isLoading && <Loader />}
             {!data?.rows && !isLoading && <NoData />}
             {data?.rows && !isLoading && (
               <AllManuscriptsDataTable data={data.rows} />
