@@ -35,8 +35,8 @@ export default function UserInformation({
             }}
           >
             <Box>
-              <Typography variant="body2">{mainInfo}</Typography>
-              <Typography variant="caption">{subInfo}</Typography>
+              <Typography variant="body1">{mainInfo}</Typography>
+              <Typography variant="body2">{subInfo}</Typography>
             </Box>
             {rightActions && <Box>{rightActions}</Box>}
           </Box>

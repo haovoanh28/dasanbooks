@@ -6,7 +6,6 @@ import LazyLoader from "base/components/LazyLoader";
 const MainPage = LazyLoader(lazy(() => import("dashboard/pages/MainPage")));
 
 const routes: RouteObject = {
-  // index: true,
   path: DASHBOARD_URL,
   element: <MainPage />,
 };

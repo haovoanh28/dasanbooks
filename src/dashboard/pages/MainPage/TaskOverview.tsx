@@ -4,7 +4,7 @@ import { PieChart } from "@mui/x-charts/PieChart";
 const TaskOverview = () => {
   return (
     <>
-      <Typography variant="h6" sx={{ mb: 2 }}>
+      <Typography variant="h4" sx={{ mb: 2 }}>
         Task Overview
       </Typography>
       <PieChart
