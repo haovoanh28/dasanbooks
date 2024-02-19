@@ -16,8 +16,6 @@ const requirePublicRoutes = require.context(
   true,
   /^\.\/.*PublicRoute.tsx$/
 );
-console.log("requireAppRoutes", requireAppRoutes.keys());
-console.log("requirePublicRoutes", requirePublicRoutes.keys());
 
 requireAppRoutes.keys().forEach((path: any) => {
   const route = requireAppRoutes(path).default;
@@ -32,10 +30,6 @@ requirePublicRoutes.keys().forEach((path: any) => {
 const mainRoutes: RouteObject = {
   element: <PageLayout />,
   children: [
-    // {
-    //   index: true,
-    //   element: <Navigate to="/dashboard" replace />,
-    // },
     {
       path: "/",
       children: [
