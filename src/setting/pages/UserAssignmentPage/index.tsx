@@ -5,6 +5,8 @@ import Body from "./Body";
 
 import { faker } from "@faker-js/faker";
 import { IdName } from "types/common";
+import { useGetCategoryList } from "setting/hooks/useCategory";
+import { useEffect } from "react";
 
 const generateData = (count: number): IdName[] => {
   return Array.from({ length: count }, (_, index) => ({
@@ -15,6 +17,14 @@ const generateData = (count: number): IdName[] => {
 const list = generateData(30);
 
 const UserAssignmentPage = () => {
+  const { data, isLoading } = useGetCategoryList();
+
+  useEffect(() => {
+    if (data) {
+      console.log(data);
+    }
+  }, [data]);
+
   return (
     <Box>
       <PageHeader pageTitle="User Assignment" pageIcon={ManageAccounts} />
