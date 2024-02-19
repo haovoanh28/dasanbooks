@@ -1,9 +1,5 @@
-"use client";
-
-import { useTheme, Box, Typography } from "@mui/material";
+import { Grid } from "@mui/material";
 import BaseButton from "base/components/BaseButton";
-import Grid from "@mui/material/Grid";
-import Stack from "@mui/material/Stack";
 import Panel from "./Panel";
 
 import { IdName } from "types/common";
