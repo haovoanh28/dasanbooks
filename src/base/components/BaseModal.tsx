@@ -6,6 +6,7 @@ import {
   Backdrop,
   Fade,
   SxProps,
+  Divider,
 } from "@mui/material";
 import BaseIconButton from "./BaseIconButton";
 import { Close } from "@mui/icons-material";
@@ -40,6 +41,7 @@ const MODAL_WRAPPER_STYLES: SxProps = {
   borderRadius: 2,
   overflow: "hidden",
 };
+
 export default function BaseModal({
   open,
   onClose,
@@ -74,6 +76,7 @@ export default function BaseModal({
               display: "flex",
               alignItems: "center",
               justifyContent: "space-between",
+              borderBottom: `1px solid ${theme.palette.divider}`,
             }}
           >
             <Typography variant="h4">{title}</Typography>
