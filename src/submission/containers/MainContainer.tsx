@@ -1,11 +1,7 @@
-import PageLayout from "base/layouts/PageLayout";
+import { Outlet } from "react-router-dom";
 
 const MainContainer = () => {
-  return (
-    <div>
-      <PageLayout />
-    </div>
-  );
+  return <Outlet />;
 };
 
 export default MainContainer;

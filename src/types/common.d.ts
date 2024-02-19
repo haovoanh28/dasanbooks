@@ -5,6 +5,6 @@ export interface PaginationResponse {
 }
 
 export interface IdName {
-  id: string;
+  id: string | number;
   name: string;
 }

@@ -1,4 +1,4 @@
-import {Box, Typography, Stack, Checkbox} from "@mui/material";
+import { Box, Typography, Stack, Checkbox } from "@mui/material";
 
 import { Folder, Person, ArrowRight, ArrowDropDown } from "@mui/icons-material";
 import { SvgIconProps } from "@mui/material";

@@ -1,9 +1,11 @@
 import { Box, Typography } from "@mui/material";
+import PageHeader from "base/components/PageHeader";
+import { BarChart } from "@mui/icons-material";
 
 const MainPage = () => {
   return (
     <Box>
-      <Typography>Dashboard Page</Typography>
+      <PageHeader pageTitle="대시보드" pageIcon={BarChart} />
     </Box>
   );
 };
