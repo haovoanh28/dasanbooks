@@ -3,14 +3,17 @@ import { Card, CardContent, Typography, Box } from "@mui/material";
 import { Description } from "@mui/icons-material";
 import Toolbar from "./Toolbar";
 import AllManuscriptsDataTable from "./DataTable";
+import NoData from "base/components/NoData";
 import { useGetManuscriptList } from "manuscript/hooks/useManuscriptList";
 
 const ListPage = () => {
   const { data, isLoading } = useGetManuscriptList();
 
-  if (!data) {
-    return <Box>Loading ...</Box>;
-  }
+  // if (!data) {
+  //   return <Box>Loading ...</Box>;
+  // }
+
+  console.log("data ==> ", data);
 
   return (
     <Box className="list-manuscript">
@@ -18,8 +21,12 @@ const ListPage = () => {
       <Card>
         <CardContent>
           <Toolbar />
-          <Box sx={{ mb: 2 }}>
-            <AllManuscriptsDataTable data={data.rows} />
+          <Box sx={{ mt: 2 }}>
+            {!data?.rows && isLoading && <Typography>Loading ....</Typography>}
+            {!data?.rows && !isLoading && <NoData />}
+            {data?.rows && !isLoading && (
+              <AllManuscriptsDataTable data={data.rows} />
+            )}
           </Box>
         </CardContent>
       </Card>
