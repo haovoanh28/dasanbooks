@@ -2,7 +2,11 @@ import axios, { AxiosRequestConfig, AxiosResponse, ResponseType } from "axios";
 import { BASE_API_URL } from "base/constant/url";
 import isEmpty from "lodash/isEmpty";
 import merge from "lodash/merge";
+import { getGroupwareUrl } from "base/utils";
 
+export const PostHeaders = {
+  "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8",
+};
 export type CustomAxiosConfigType = Omit<
   AxiosRequestConfig,
   "method" | "url" | "headers" | "responseType" | "data" | "params"
@@ -20,13 +24,15 @@ axiosInstance.interceptors.request.use(
   (config) => {
     // Modify the request config here if needed
     // config.baseURL = BASE_API_URL;
-    let baseURL = BASE_API_URL;
-    if (config?.baseURL) {
-      baseURL = config.baseURL;
+    
+    if (config.isGroupwareUrl) {
+      config.baseURL = getGroupwareUrl();
+    } else {
+      config.baseURL = BASE_API_URL;
     }
+
     return {
       ...config,
-      baseURL: baseURL,
     };
   },
   (error) => {

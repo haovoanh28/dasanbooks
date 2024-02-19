@@ -1,10 +1,17 @@
-import { memo } from "react";
+import { memo, useEffect } from "react";
 import { Box } from "@mui/material";
 import SideNav from "./SideNav";
 import { Outlet } from "react-router-dom";
 import { DRAWER_WIDTH } from "base/constant/ui";
+import { login } from "base/utils/auth";
 
 const PageLayout = () => {
+  useEffect(() => {
+    login().then(res => {
+      console.log(res);
+    });
+  }, []);
+
   return (
     <>
       <SideNav />
