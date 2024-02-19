@@ -19,7 +19,8 @@ export const useGetOrg = (params: any, keys: string[] = [], options?: any) => {
       keyStringify(params),
     ],
     url,
+    {},
     options,
-    { baseURL: getGroupwareUrl() }
+    { isGroupwareUrl: true }
   );
 };
