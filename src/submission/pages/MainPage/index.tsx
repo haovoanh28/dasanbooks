@@ -33,11 +33,8 @@ import {
 } from "@mui/icons-material";
 import {TabPanel, TabContext, TabList} from "@mui/lab";
 import {styled} from "@mui/material/styles";
-
-interface MainPageProps {
-  bookCategoriesList?: any[];
-  novelCategoriesList?: any[];
-}
+import {useGetCategory} from "../../hooks/useCategory";
+import {SubmissionCategory} from "../../../types/common";
 
 const HanAccordion = styled((props: AccordionProps) => (
   <Accordion disableGutters elevation={0} square {...props} />
@@ -101,32 +98,40 @@ const HanAccordionDetails = styled(AccordionDetails)(({theme}) => ({
   borderRadius: '4px'
 }));
 
-const MainPage = (props: MainPageProps) => {
-  const {
-    bookCategoriesList,
-    novelCategoriesList
-  } = props;
-  let drafts_novel = [
-    {id: '01', value: '로맨스'},
-    {id: '02', value: '로판'},
-    {id: '03', value: 'BL'},
-    {id: '04', value: '판타지'},
-    {id: '05', value: '무협'},
-    {id: '06', value: '기타'}
-  ];
+const MainPage = () => {
   const [value, setValue] = useState('send_book_publish');
   const [age, setAge] = useState('0');
-  const [bookCategories, setBookCategories] = useState<any[]>([]);
-  const [novelCategories, setNovelCategories] = useState<any[]>([]);
+  const [bookCategories, setBookCategories] = useState<SubmissionCategory[]>([]);
+  const [novelCategories, setNovelCategories] = useState<SubmissionCategory[]>([]);
+  const [bookSelected, setBookSelected] = useState<string | number>(0);
+  const [novelSelected, setNovelSelected] = useState<string | number>(0);
   const [expanded, setExpanded] = useState<string | false>('panel1');
 
+  const {data: submissionData, isLoading} = useGetCategory();
+
   useEffect(() => {
-    if(!bookCategories && bookCategoriesList) {
-      let categories: any[] = [...bookCategories];
-      categories.push(bookCategoriesList[0].id);
-      setBookCategories(categories);
+    console.log('C: ', submissionData);
+    const categories = submissionData?.rows?.categories;
+    if(categories && categories && categories.length === 2) {
+      if(categories[0]?.rows && categories[0]?.rows.length > 0) {
+        console.log('B: ', categories[0]);
+        setBookCategories(categories[0]?.rows);
+      }
+
+      if(categories[1]?.rows && categories[1]?.rows.length > 0) {
+        setNovelCategories(categories[1]?.rows);
+      }
     }
-  }, [bookCategoriesList]);
+    const domains = submissionData?.rows?.domains;
+  }, [submissionData]);
+
+  // useEffect(() => {
+  //   if(!bookSelected && bookCategories) {
+  //     let categories: any[] = [...bookSelected];
+  //     categories.push(bookCategories[0].id);
+  //     setBookCategories(categories);
+  //   }
+  // }, [categoriesData]);
 
   const handleChange = (event: SyntheticEvent, newValue: string) => {
     setValue(newValue);
@@ -136,37 +141,41 @@ const MainPage = (props: MainPageProps) => {
     setAge(event.target.value);
   };
 
-  const handleSelectBookCategories = (draftCategory: string) => {
-    let categories = [...bookCategories];
-    if (!categories.some((cat: any) => {
-      return cat == draftCategory;
-    })) {
-      categories.push(draftCategory);
-    } else {
-      categories.some((cat: any, i: number) => {
-        if (cat == draftCategory) {
-          categories.splice(i, 1);
-        }
-      });
-    }
-    setBookCategories(categories);
+  const handleSelectBook = (draftCategory: number | string) => {
+    // use select multi categories
+    // let categories = [...bookSelected];
+    // if (!categories.some((cat: any) => {
+    //   return cat == draftCategory;
+    // })) {
+    //   categories.push(draftCategory);
+    // } else {
+    //   categories.some((cat: any, i: number) => {
+    //     if (cat == draftCategory) {
+    //       categories.splice(i, 1);
+    //     }
+    //   });
+    // }
+    setBookSelected(draftCategory);
   }
 
-  const handleSelectNovelCategories = (draftCategory: string) => {
-    let categories = [...novelCategories];
-    if (!categories.some((cat: any) => {
-      return cat == draftCategory;
-    })) {
-      categories.push(draftCategory);
-    } else {
-      categories.some((cat: any, i: number) => {
-        if (cat == draftCategory) {
-          categories.splice(i, 1);
-        }
-      });
-    }
-    setNovelCategories(categories);
+  const handleSelectNovel = (draftCategory: number | string) => {
+    // use select multi categories
+    // let categories = [...novelSelected];
+    // if (!categories.some((cat: any) => {
+    //   return cat == draftCategory;
+    // })) {
+    //   categories.push(draftCategory);
+    // } else {
+    //   categories.some((cat: any, i: number) => {
+    //     if (cat == draftCategory) {
+    //       categories.splice(i, 1);
+    //     }
+    //   });
+    // }
+    setNovelSelected(draftCategory);
   }
+
+  console.log('Book: ', bookCategories);
 
   const handleExpandChange = (panel: string) => (event: SyntheticEvent, newExpanded: boolean) => {
     setExpanded(newExpanded ? panel : false);
@@ -326,9 +335,9 @@ const MainPage = (props: MainPageProps) => {
              </Box>
              <Box>
                <Grid container rowSpacing={2} columnSpacing={2}>
-                 {bookCategoriesList && bookCategoriesList.length > 0 && bookCategoriesList.map((draft: any, index: number) => {
+                 {bookCategories && bookCategories.length > 0 && bookCategories.map((draft: any, index: number) => {
                    return (
-                     <Grid item>
+                     <Grid key={draft.id} item>
                        <Button
                          key={draft.id}
                          variant="outlined"
@@ -336,20 +345,15 @@ const MainPage = (props: MainPageProps) => {
                          sx={{
                            minWidth: '130px',
                            minHeight: '44px',
-                           color: bookCategories.some((cat: any) => {
-                             return cat == draft.id
-                           }) ? '#FFF' : '#1B2E4B',
-                           backgroundColor: bookCategories.some((cat: any) => {
-                             return cat == draft.id
-                           }) ? '#2F54EB' : '',
-                           borderColor: bookCategories.some((cat: any) => {
-                             return cat == draft.id
-                           }) ? '#2F54EB' : '#C0CCDA',
+                           color: bookSelected == draft.id ? '#FFF' : '#1B2E4B',
+                           backgroundColor: bookSelected == draft.id ? '#2F54EB' : 'transparent',
+                           borderColor: bookSelected == draft.id ? '#2F54EB' : '#C0CCDA',
                            '&:hover': {
-                             color: '#1B2E4B'
+                             color: '#FFF',
+                             backgroundColor: '#0168FA'
                            }
                          }}
-                         onClick={() => handleSelectBookCategories(draft.id)}
+                         onClick={() => handleSelectBook(draft.id)}
                        >
                          {draft.name}
                        </Button>
@@ -607,9 +611,9 @@ const MainPage = (props: MainPageProps) => {
              </Box>
              <Box>
                <Grid container rowSpacing={2} columnSpacing={2}>
-                 {drafts_novel && drafts_novel.length > 0 && drafts_novel.map((draft: any, index: number) => {
+                 {novelCategories && novelCategories.length > 0 && novelCategories.map((draft: any, index: number) => {
                    return (
-                     <Grid item>
+                     <Grid key={draft.id} item>
                        <Button
                          key={draft.id}
                          variant="outlined"
@@ -617,22 +621,16 @@ const MainPage = (props: MainPageProps) => {
                          sx={{
                            minWidth: '130px',
                            minHeight: '44px',
-                           color: novelCategories.some((cat: string) => {
-                             return cat == draft.id
-                           }) ? '#FFF' : '#1B2E4B',
-                           backgroundColor: novelCategories.some((cat: string) => {
-                             return cat == draft.id
-                           }) ? '#2F54EB' : '',
-                           borderColor: novelCategories.some((cat: string) => {
-                             return cat == draft.id
-                           }) ? '#2F54EB' : '#C0CCDA',
+                           color: novelSelected == draft.id ? '#FFF' : '#1B2E4B',
+                           backgroundColor: novelSelected == draft.id ? '#2F54EB' : '',
+                           borderColor: novelSelected == draft.id ? '#2F54EB' : '#C0CCDA',
                            '&:hover': {
                              color: '#1B2E4B'
                            }
                          }}
-                         onClick={() => handleSelectNovelCategories(draft.id)}
+                         onClick={() => handleSelectNovel(draft.id)}
                        >
-                         {draft.value}
+                         {draft.name}
                        </Button>
                      </Grid>
                    );
