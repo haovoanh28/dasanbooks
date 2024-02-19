@@ -9,10 +9,10 @@ import Loader from "base/components/Loader";
 import useAuth from "base/hooks/useAuth";
 
 const ListPage = () => {
-  const { data, isLoading } = useGetManuscriptList();
   const { isLoggedIn } = useAuth();
+  const { data, isLoading } = useGetManuscriptList({ enabled: isLoggedIn });
 
-  // console.log("isLoggedIn ==> ", isLoggedIn);
+  console.log("isLoggedIn ==> ", isLoggedIn);
 
   console.log("data ==> ", data);
 

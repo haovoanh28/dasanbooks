@@ -4,11 +4,17 @@ import SideNav from "./SideNav";
 import { Outlet } from "react-router-dom";
 import { DRAWER_WIDTH } from "base/constant/ui";
 import { login } from "base/utils/auth";
+import { useCookies } from "react-cookie";
+import { COOKIES_HANBIRO_GW } from "base/constant/cookies";
 
 const PageLayout = () => {
+  const [cookies, setCookie] = useCookies();
+
   useEffect(() => {
-    login().then(res => {
-      console.log(res);
+    login().then((res) => {
+      if (!cookies[COOKIES_HANBIRO_GW]) {
+        setCookie(COOKIES_HANBIRO_GW, res.session);
+      }
     });
   }, []);
 

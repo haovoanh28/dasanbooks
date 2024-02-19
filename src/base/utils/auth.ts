@@ -1,6 +1,6 @@
 import { axiosPost, PostHeaders } from "base/lib/api";
 import { encrypt } from "./encrypt";
-// import { LoginResponseType } from "types/auth/login";
+import { LoginResponseType } from "types/auth/login";
 
 export const login = () => {
   const params = {
@@ -8,7 +8,13 @@ export const login = () => {
     gw_pass: encrypt("matkhau1!"),
   };
 
-  return axiosPost("/sign/auth", params, PostHeaders, undefined, {
-    isGroupwareUrl: true,
-  });
+  return axiosPost<LoginResponseType>(
+    "/sign/auth",
+    params,
+    PostHeaders,
+    undefined,
+    {
+      isGroupwareUrl: true,
+    }
+  );
 };

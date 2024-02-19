@@ -1,11 +1,11 @@
 import { useCookies } from "react-cookie";
+import { COOKIES_HANBIRO_GW } from "base/constant/cookies";
 
 export default function useAuth() {
-  const [cookies] = useCookies(["HANBIRO_GW"]);
-  console.log("cookies ==> ", cookies);
+  const [cookies] = useCookies();
   let isLoggedIn = false;
 
-  if (cookies?.HANBIRO_GW) {
+  if (cookies?.[COOKIES_HANBIRO_GW]) {
     isLoggedIn = true;
   }
 

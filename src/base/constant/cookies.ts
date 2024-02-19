@@ -1,0 +1,1 @@
+export const COOKIES_HANBIRO_GW = 'HANBIRO_GW';
