@@ -53,13 +53,21 @@ export default function AllManuscriptsDataTable({ data }: Props) {
     }),
     columnHelper.accessor("reviewers", {
       header: "Reviewers",
-      cell: (info) => (
-        <AvatarGroup max={5} sx={{ justifyContent: "start" }}>
-          {info.getValue().map(({ id, name }) => (
-            <Avatar key={`${info.row.original.id}-${id}`} alt={name} src="" />
-          ))}
-        </AvatarGroup>
-      ),
+      cell: (info) => {
+        const reviewers = info.getValue();
+
+        if (!reviewers) {
+          return <Typography>No Reviewers</Typography>;
+        }
+
+        return (
+          <AvatarGroup max={5} sx={{ justifyContent: "start" }}>
+            {reviewers.map(({ id, name }) => (
+              <Avatar key={`${info.row.original.id}-${id}`} alt={name} src="" />
+            ))}
+          </AvatarGroup>
+        );
+      },
     }),
     columnHelper.accessor("created_on", {
       header: "Created On",
@@ -71,7 +79,9 @@ export default function AllManuscriptsDataTable({ data }: Props) {
     }),
     columnHelper.accessor("type", {
       header: "Mail Type",
-      cell: (info) => <Typography>{info.getValue().name}</Typography>,
+      cell: (info) => (
+        <Typography>{info.getValue()?.name || "No Mail Type"}</Typography>
+      ),
     }),
   ];
 

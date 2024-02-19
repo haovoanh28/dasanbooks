@@ -1,5 +1,6 @@
 import { axiosPost, PostHeaders } from "base/lib/api";
 import { encrypt } from "./encrypt";
+// import { LoginResponseType } from "types/auth/login";
 
 export const login = () => {
   const params = {

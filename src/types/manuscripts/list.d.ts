@@ -8,7 +8,7 @@ export interface ManuscriptListItemData {
   creator_name: string;
   created_on: string;
   status: string;
-  reviewers: IdName[];
+  reviewers?: IdName[] | undefined;
 }
 
 export interface ManuscriptListResponse {

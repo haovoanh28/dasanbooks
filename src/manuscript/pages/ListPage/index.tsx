@@ -6,9 +6,13 @@ import AllManuscriptsDataTable from "./DataTable";
 import NoData from "base/components/NoData";
 import { useGetManuscriptList } from "manuscript/hooks/useManuscriptList";
 import Loader from "base/components/Loader";
+import useAuth from "base/hooks/useAuth";
 
 const ListPage = () => {
   const { data, isLoading } = useGetManuscriptList();
+  const { isLoggedIn } = useAuth();
+
+  // console.log("isLoggedIn ==> ", isLoggedIn);
 
   console.log("data ==> ", data);
 

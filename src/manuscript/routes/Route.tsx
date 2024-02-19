@@ -31,7 +31,7 @@ const routes: RouteObject = {
       element: <PersonalPage />,
     },
     {
-      path: "view/:id",
+      path: ":id",
       element: <ViewPage />,
     },
   ],
