@@ -1,4 +1,4 @@
-import { HomeOutlined, BarChartOutlined } from "@ant-design/icons";
+import { BarChartOutlined } from "@ant-design/icons";
 import {
   List as ListIcon,
   Description,
@@ -19,7 +19,6 @@ interface LinkType {
 }
 
 const LINKS: LinkType[] = [
-  { text: "Home", href: "/", icon: HomeOutlined },
   { text: "대시보드", href: "/dashboard", icon: BarChartOutlined },
   {
     text: "원고 투고 목록",
