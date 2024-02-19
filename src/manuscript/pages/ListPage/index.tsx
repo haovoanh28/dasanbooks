@@ -12,10 +12,6 @@ const ListPage = () => {
   const { isLoggedIn } = useAuth();
   const { data, isLoading } = useGetManuscriptList({ enabled: isLoggedIn });
 
-  console.log("isLoggedIn ==> ", isLoggedIn);
-
-  console.log("data ==> ", data);
-
   return (
     <Box className="list-manuscript">
       <PageHeader pageTitle="All Manuscripts" pageIcon={Description} />

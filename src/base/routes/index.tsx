@@ -1,49 +1,11 @@
 import { useRoutes } from "react-router-dom";
-import MainLayout from "base/layouts/MainLayout";
-import { Navigate } from "react-router-dom";
-import { RouteObject } from "react-router-dom";
-import PageLayout from "base/layouts/PageLayout";
+import PublicRoutes from "base/routes/PublicRoutes";
+import AuthRoutes from "base/routes/AuthRoutes";
 
-const moduleRoutes: RouteObject[] = [];
-const publicRoutes: RouteObject[] = [];
-const requireAppRoutes = require.context(
-  "/src",
-  true,
-  /^\.\/.*(?<!Public)Route.tsx$/
-);
-const requirePublicRoutes = require.context(
-  "/src",
-  true,
-  /^\.\/.*PublicRoute.tsx$/
-);
-
-requireAppRoutes.keys().forEach((path: any) => {
-  const route = requireAppRoutes(path).default;
-  moduleRoutes.push(route);
-});
-
-requirePublicRoutes.keys().forEach((path: any) => {
-  const route = requirePublicRoutes(path).default;
-  publicRoutes.push(route);
-});
-
-const mainRoutes: RouteObject = {
-  element: <PageLayout />,
-  children: [
-    {
-      path: "/",
-      children: [
-        {
-          index: true,
-          element: <Navigate to="/dashboard" replace />,
-        },
-        ...moduleRoutes,
-      ],
-    },
-  ],
-};
+console.log("AuthRoutes", AuthRoutes);
+console.log("PublicRoutes", PublicRoutes);
 
 // publicRoutes use their own layout
 export default function AppRoutes() {
-  return useRoutes([mainRoutes, ...publicRoutes]);
+  return useRoutes([AuthRoutes, PublicRoutes]);
 }
