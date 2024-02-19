@@ -16,7 +16,7 @@ export const useGetCategoryList = () => {
   );
 };
 
-export const useGetCategoryView = (id: string) => {
-  const keys = [queryKeys.getCategoryView, id];
-  return useGet<CategoryViewResponse>(keys, `${GET_CATEGORY_VIEW_URL}/${id}`);
+export const useGetCategoryView = (params: any, opt: any) => {
+  const keys = [queryKeys.getCategoryView, params.id];
+  return useGet<CategoryViewResponse>(keys, GET_CATEGORY_VIEW_URL, params, opt);
 };

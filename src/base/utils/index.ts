@@ -44,3 +44,18 @@ export const keyStringify = (
 
   return newData;
 };
+
+export const getUserAvatarUrl = (
+  cn: string | number | undefined,
+  no: string | number | undefined,
+  width = 35,
+  height = 35,
+  userLatestModified = Date.now(),
+  isThumbnail = false
+) => {
+  return isThumbnail
+    ? getGroupwareUrl() +
+        `/org/user/photo/no/${no}/cn/${cn}/thumb/1?t=${userLatestModified}`
+    : getGroupwareUrl() +
+        `/org/user/photo/no/${no}/cn/${cn}?width=${width}&height=${height}&t=${userLatestModified}`;
+};

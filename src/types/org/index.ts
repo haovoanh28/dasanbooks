@@ -76,6 +76,12 @@ export type User = {
   fa_auth?: string;
 };
 
+export type SelectedOrgItemList = {
+  [x: string | number]: SelectedOrgItem;
+};
+
+export type SelectedOrgItem = Department | User;
+
 export interface OrgConfig {
   init: {
     getParams: (searchValue: string, extraParams?: any) => {} | null;

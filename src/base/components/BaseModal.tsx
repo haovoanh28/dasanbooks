@@ -38,7 +38,7 @@ const MODAL_WRAPPER_STYLES: SxProps = {
   top: "50%",
   left: "50%",
   transform: "translate(-50%, -50%)",
-  borderRadius: 2,
+  borderRadius: 1,
   overflow: "hidden",
 };
 
@@ -68,10 +68,8 @@ export default function BaseModal({
         <Box sx={{ ...MODAL_WRAPPER_STYLES, width: MODAL_WIDTH_MAP[size] }}>
           <Box
             sx={{
-              backgroundColor: theme.palette.background.paper,
-              color: theme.palette.getContrastText(
-                theme.palette.background.paper
-              ),
+              backgroundColor: theme.palette.text.dark,
+              color: theme.palette.primary.contrastText,
               padding: PADDING_FACTOR,
               display: "flex",
               alignItems: "center",
