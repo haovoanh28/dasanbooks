@@ -47,7 +47,7 @@ export default function Panel({ title, sx, rightActions, children }: Props) {
             className="scroll-box"
             sx={{
               height: "calc(100% - 55px)",
-              p: PADDING_FACTOR,
+              p: 2,
               backgroundColor: theme.palette.background.paper,
               color: theme.palette.getContrastText(
                 theme.palette.background.paper

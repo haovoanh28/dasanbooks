@@ -26,7 +26,14 @@ export default function Reviewers({ data, isLoading }: Props) {
     () => (
       <BaseButton
         startIcon={<Add />}
-        sx={{ color: theme.palette.primary.contrastText }}
+        color="secondary"
+        sx={{
+          color: theme.palette.primary.contrastText,
+          "&:hover": {
+            backgroundColor: "transparent",
+            color: theme.palette.primary.contrastText,
+          },
+        }}
         onClick={() => setOpenOrg(true)}
       >
         Add
