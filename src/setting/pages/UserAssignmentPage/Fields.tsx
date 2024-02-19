@@ -17,7 +17,7 @@ export default function Fields({
 }: Props) {
   return (
     <Panel title="분야">
-      <Grid container spacing={2}>
+      <Grid container rowSpacing={2} columnSpacing={2}>
         {fields.map((field) => (
           <Grid key={field.id} item xs={6}>
             <BaseButton
