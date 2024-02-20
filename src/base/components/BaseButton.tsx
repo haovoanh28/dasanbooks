@@ -1,6 +1,7 @@
 import Button, { ButtonProps } from "@mui/material/Button";
 
 interface Props extends ButtonProps {
+  loading?: boolean;
   children: React.ReactNode;
 }
 

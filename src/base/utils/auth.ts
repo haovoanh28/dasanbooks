@@ -2,10 +2,14 @@ import { axiosPost, PostHeaders } from "base/lib/api";
 import { encrypt } from "./encrypt";
 import { LoginResponseType } from "types/auth/login";
 
-export const login = () => {
+type LoginParams = {
+  userName: string;
+  password: string;
+};
+export const login = ({ userName, password }: LoginParams) => {
   const params = {
-    gw_id: encrypt("luu"),
-    gw_pass: encrypt("matkhau1!"),
+    gw_id: encrypt(userName),
+    gw_pass: encrypt(password),
   };
 
   return axiosPost<LoginResponseType>(
