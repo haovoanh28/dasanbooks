@@ -101,8 +101,11 @@ const HanAccordionDetails = styled(AccordionDetails)(({theme}) => ({
 const MainPage = () => {
   const [value, setValue] = useState('send_book_publish');
   const [age, setAge] = useState('0');
+
   const [bookCategories, setBookCategories] = useState<SubmissionCategory[]>([]);
   const [novelCategories, setNovelCategories] = useState<SubmissionCategory[]>([]);
+  const [domainCategories, setDomainCategories] = useState<string[]>([]);
+
   const [bookSelected, setBookSelected] = useState<string | number>(0);
   const [novelSelected, setNovelSelected] = useState<string | number>(0);
   const [expanded, setExpanded] = useState<string | false>('panel1');
@@ -112,7 +115,7 @@ const MainPage = () => {
   useEffect(() => {
     console.log('C: ', submissionData);
     const categories = submissionData?.rows?.categories;
-    if(categories && categories && categories.length === 2) {
+    if(categories && categories.length === 2) {
       if(categories[0]?.rows && categories[0]?.rows.length > 0) {
         console.log('B: ', categories[0]);
         setBookCategories(categories[0]?.rows);
@@ -123,6 +126,9 @@ const MainPage = () => {
       }
     }
     const domains = submissionData?.rows?.domains;
+    if(domains && domains.length > 0) {
+      setDomainCategories(domains);
+    }
   }, [submissionData]);
 
   // useEffect(() => {
@@ -313,9 +319,11 @@ const MainPage = () => {
                        선택
                      </Typography>
                    </MenuItem>
-                   <MenuItem value={10}>Ten</MenuItem>
-                   <MenuItem value={20}>Twenty</MenuItem>
-                   <MenuItem value={30}>Thirty</MenuItem>
+                   {domainCategories && domainCategories.length > 0 && domainCategories.map((domain: string) => {
+                     return (
+                       <MenuItem value={domain}>@{domain}</MenuItem>
+                     );
+                   })}
                  </Select>
                </FormControl>
              </Box>
