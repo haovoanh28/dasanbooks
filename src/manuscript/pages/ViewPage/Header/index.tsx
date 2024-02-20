@@ -21,7 +21,7 @@ export default function Header({ data }: Props) {
       <Box>
         <Box sx={{ display: "flex", alignItems: "center", gap: 1, mb: 1 }}>
           <Typography variant="h3">{data.title}</Typography>
-          <Chip label={data.type.name} color="info" />
+          <Chip label={data.status} color="info" />
         </Box>
         <Typography variant="body2" color="grey">
           Submitted On: {data.created_on}

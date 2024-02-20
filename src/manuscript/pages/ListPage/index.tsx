@@ -4,7 +4,7 @@ import { Description } from "@mui/icons-material";
 import Toolbar from "./Toolbar";
 import AllManuscriptsDataTable from "./DataTable";
 import NoData from "base/components/NoData";
-import { useGetManuscriptList } from "manuscript/hooks/useManuscriptList";
+import { useGetManuscriptList } from "manuscript/hooks/useManuscript";
 import Loader from "base/components/Loader";
 import useAuth from "base/hooks/useAuth";
 

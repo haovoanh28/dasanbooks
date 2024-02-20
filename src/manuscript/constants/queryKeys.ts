@@ -1,5 +1,6 @@
 const queryKeys = {
-  getManuscriptListUrl: "queryKeys_getManuscriptListUrl",
+  getManuscriptList: "queryKeys_getManuscriptList",
+  getManuscriptDetail: "queryKeys_getManuscriptDetail",
 };
 
 export default queryKeys;

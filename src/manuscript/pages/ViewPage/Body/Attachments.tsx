@@ -1,17 +1,17 @@
 import { Box, Typography } from "@mui/material";
 import FileItem from "base/components/FileItem";
 
-import { IdName } from "types/common";
+import { ManuscriptAttachmentData } from "types/manuscripts/view";
 
 interface Props {
-  fileList: IdName[];
+  fileList: ManuscriptAttachmentData[];
 }
 
 export default function Attachments({ fileList }: Props) {
   return (
     <Box sx={{ display: "flex", alignItems: "center", gap: 3 }}>
       {fileList.map((file) => (
-        <FileItem key={file.id} name={file.name} />
+        <FileItem key={file.store_name} name={file.real_name} />
       ))}
     </Box>
   );

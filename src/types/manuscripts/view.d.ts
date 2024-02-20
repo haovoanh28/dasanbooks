@@ -8,18 +8,26 @@ export interface ManuscriptCommentData {
   content: string;
 }
 
+export interface ManuscriptAttachmentData {
+  store_name: string;
+  real_name: string;
+  extension: string;
+  mime_type: string;
+}
+
 export interface ManuscriptData {
   id: number | string;
   category_name: string;
-  type: IdName;
+  category_id: string;
   title: string;
   content: string;
   creator_name: string;
   created_on: string;
   status: string;
   reviewers: IdName[];
-  attachments: IdName[];
+  attachments: ManuscriptAttachmentData[];
   comments: ManuscriptCommentData[];
+  comment_count: string;
 }
 
 export interface ManuscriptViewResponse {

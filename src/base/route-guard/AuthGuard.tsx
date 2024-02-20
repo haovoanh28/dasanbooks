@@ -22,9 +22,9 @@ const AuthGuard = ({ children }: Props) => {
     }
   }, [isLoggedIn, isHome]);
 
-  if (!isCheckedLogin) {
-    return <Typography>Checking auth ...</Typography>;
-  }
+  // if (!isCheckedLogin) {
+  //   return <Typography>Checking auth ...</Typography>;
+  // }
 
   return children;
 };

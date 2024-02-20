@@ -1,4 +1,4 @@
 export interface DetailPageParams {
-  // [key: string]: string | string[];
+  [key: string]: string;
   id: string;
 }

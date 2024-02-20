@@ -13,6 +13,7 @@ const Loader = ({ type = "component" }: Props) => {
     transform: "translate(-50%, -50%)",
   };
   const componentLoaderStyles: SxProps = {
+    padding: 4,
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
