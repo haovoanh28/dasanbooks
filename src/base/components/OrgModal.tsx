@@ -1,5 +1,4 @@
 import { Box, Stack } from "@mui/material";
-import SearchBar from "./SearchBar";
 import BaseButton from "./BaseButton";
 import BaseModal from "./BaseModal";
 import BaseOrg from "./BaseOrg";
@@ -29,12 +28,13 @@ export default function OrgModal({ open, onClose }: Props) {
       onClose={onClose}
       size="md"
       footer={Footer}
+      modalHeight={"60%"}
     >
-      <Box sx={{ mt: 1 }}>
+      <Box sx={{ height: "100%" }}>
         <BaseOrg
           search
-          orgConfig={orgDepartmentConfig}
           isCheckbox
+          orgConfig={orgDepartmentConfig}
           onChangeSelectUser={(data) => {
             console.log("user:", data);
           }}

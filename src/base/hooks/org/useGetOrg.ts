@@ -1,7 +1,7 @@
-import { getGroupwareUrl, keyStringify } from "base/utils";
+import { URL_GET_ORG } from "base/constant/url";
+import { keyStringify } from "base/utils";
 import useGet from "../useGet";
 import { GET_ORG } from "./queryKeys";
-import { URL_GET_ORG } from "base/constant/url";
 
 export const useGetOrg = (params: any, keys: string[] = [], options?: any) => {
   // let url = [getGroupwareUrl(), URL_GET_ORG].join("/");
@@ -15,11 +15,11 @@ export const useGetOrg = (params: any, keys: string[] = [], options?: any) => {
     [
       GET_ORG,
       ...(keys ? keys : []),
-      ...(fid ? [fid] : []),
+      // ...(fid ? [fid] : []),
       keyStringify(params),
     ],
     url,
-    {},
+    params,
     options,
     { isGroupwareUrl: true }
   );

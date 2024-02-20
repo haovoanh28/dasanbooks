@@ -7,6 +7,7 @@ import {
   Fade,
   SxProps,
   Divider,
+  Stack,
 } from "@mui/material";
 import BaseIconButton from "./BaseIconButton";
 import { Close } from "@mui/icons-material";
@@ -24,6 +25,7 @@ interface Props {
   size?: keyof ModalSize;
   footer: React.ReactNode;
   children: React.ReactNode;
+  modalHeight?: string | number;
 }
 
 const MODAL_WIDTH_MAP: ModalSize = {
@@ -49,6 +51,7 @@ export default function BaseModal({
   size = "md",
   footer,
   children,
+  modalHeight,
 }: Props) {
   const theme = useTheme();
 
@@ -65,7 +68,13 @@ export default function BaseModal({
       }}
     >
       <Fade in={open}>
-        <Box sx={{ ...MODAL_WRAPPER_STYLES, width: MODAL_WIDTH_MAP[size] }}>
+        <Stack
+          sx={{
+            ...MODAL_WRAPPER_STYLES,
+            width: MODAL_WIDTH_MAP[size],
+            height: modalHeight,
+          }}
+        >
           <Box
             sx={{
               backgroundColor: theme.palette.text.dark,
@@ -91,6 +100,7 @@ export default function BaseModal({
               padding: PADDING_FACTOR,
               bgcolor: "background.paper",
               width: "100%",
+              flex: 1,
             }}
           >
             {children}
@@ -111,7 +121,7 @@ export default function BaseModal({
               </Box>
             </>
           )}
-        </Box>
+        </Stack>
       </Fade>
     </Modal>
   );

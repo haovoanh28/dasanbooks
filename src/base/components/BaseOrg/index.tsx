@@ -60,7 +60,7 @@ const OrgTreeV2 = (props: OrgTreeV2Props) => {
       {search ? (
         <Stack p={1.5} width={"100%"} height={"100%"} spacing={1}>
           <OrgSearch value={keyword} onChange={setKeyword} />
-          <Box sx={{ flex: 1, overflowY: "auto" }}>
+          <Box sx={{ flex: 1, overflowY: "auto", height: "calc(100% - 55px)" }}>
             <OrgTree
               draggable={draggable}
               keyword={keyword}
