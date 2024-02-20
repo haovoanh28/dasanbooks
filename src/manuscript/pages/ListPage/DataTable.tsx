@@ -30,8 +30,8 @@ export default function AllManuscriptsDataTable({ data }: Props) {
   const columns = [
     {
       id: `select`,
-      header: () => <Checkbox sx={{ width: 30 }} />,
-      cell: () => <Checkbox sx={{ width: 30 }} onChange={(e) => {}} />,
+      header: () => <Checkbox sx={{}} />,
+      cell: () => <Checkbox sx={{}} onChange={(e) => {}} />,
     },
     columnHelper.accessor("category_name", {
       header: "분야",
